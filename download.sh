@@ -42,6 +42,7 @@ while IFS= read -r url; do
 
   # Run the depotdownloader command
   for os in Windows macOS Linux; do
+    set +e # Disable exit on error as depotdownloader returns a non-zero exit code if the platform is not available
     depotdownloader \
       -os "$(echo $os | tr '[:upper:]' '[:lower:]')" \
       -dir "${game_dir}/${os}" \
